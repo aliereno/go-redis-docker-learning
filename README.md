@@ -19,6 +19,6 @@ docker-compose up
 
 * `GET` Body:{ "name": STRING, "code": STRING }
 
-###EXAMPLE
-* `http://127.0.0.1:3000/TR` -> `{"name":"Egypt","code":"EG"}`
+### EXAMPLE
+* `http://127.0.0.1:3000/TR` -> `{"name":"Turkey","code":"TR"}`
 * `http://127.0.0.1:3000/GB` -> `{"name":"United Kingdom","code":"GB"}`
