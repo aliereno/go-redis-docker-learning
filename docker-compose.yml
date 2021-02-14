@@ -1,0 +1,36 @@
+version: '3'
+
+volumes:
+  redis: {}
+
+services:
+  redis:
+    env_file:
+      - ".env"
+    image: "redis:5.0.4-stretch"
+    restart: always
+    volumes:
+      - "redis:/data"
+
+  web:
+    build:
+      context: "."
+    depends_on:
+      - "redis"
+    env_file:
+      - ".env"
+    command: bash -c "go run main.go"
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/code:cached
+
+#  nginx:
+#    image: nginx
+#    restart: always
+#    volumes:
+#      - ./.docker/nginx-dev.conf:/etc/nginx/conf.d/default.conf
+#      - ./.docker/.htpasswd:/etc/nginx/.htpasswd
+#    ports:
+#      - 80:80
+#      - 443:443
